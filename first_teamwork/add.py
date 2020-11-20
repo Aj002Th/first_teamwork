@@ -14,8 +14,12 @@ def add_users():
     username = data.get('name')
     student_nums = data.get('num')
 
-    if username is None or student_nums is None:
-        raise HttpError(400, 'Bad Request')
+    if username is None and student_nums is None:
+        raise HttpError(400, '缺少参数 name\n 缺少参数 num')
+    if username is None:
+        raise HttpError(400, '缺少参数 name')
+    if student_nums is None:
+        raise HttpError(400, '缺少参数 num')
 
     save_add(username, student_nums)
 
